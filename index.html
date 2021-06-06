@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BINARY SEARCH</title>
+</head>
+<body>
+    <h1>BINARY SEARCH</h1>
+    <p>Result in the console</p>
+</body>
+<script>
+    //create array using a loop with numbers from 1 to 100
+    let num_arr = [];
+    for(let i = 1; i <= 100; i++){
+        num_arr.push(i);
+    }
+    // console.log("FULL ARRAY")
+    console.log("FULL ARRAY: " + num_arr);
+
+    
+    //Takes an array and a number. Also give you the postion of the number you want to find
+    function executeBinarySearch(arr, num){
+        let result = checkMiddleForNumber(arr, num);
+        console.log(result);
+        console.log(typeof result);
+        if(result !== num){
+            checkMiddleForNumber(result, num_arr);
+        }
+        else
+        {
+            console.log(result + "is found");
+        }
+    }
+
+    function checkMiddleForNumber(user_array, user_number){
+        //get middle of user array
+        let middle_of_full_arr = Math.round(user_array.length / 2);
+        let middle_value = user_array[middle_of_full_arr];
+        let middle_of_newly_form_array = 0;
+        let newly_formed_array = [];
+        
+
+        if(middle_value === user_number){
+            return middle_value;
+        }
+        else if(middle_value > user_number){
+            console.log(middle_value + " was greater than " + user_number + " ,checking the left...");
+            middle_of_newly_form_array = Math.round(middle_of_full_arr - 1 / 2);
+            // console.log(middle_of_half_arr);
+            for(let i = 0; i < middle_of_newly_form_array; i++){
+                // console.log(arr[i]);
+                newly_formed_array.push(user_array[i]);
+            }
+            // console.log(newly_formed_array);
+            return newly_formed_array;
+        }
+        else if(middle_value < user_number){
+            console.log(middle_value + " was less than " + user_number + " ,checking the right...");
+            middle_of_newly_form_array = Math.round(middle_of_full_arr - 1 / 2);
+            // console.log(middle_of_half_arr);
+            for(let i = middle_of_newly_form_array; i < user_array.length ; i++){
+                // console.log(arr[i]);
+                newly_formed_array.push(user_array[i]);
+            }
+            // console.log(newly_formed_array);
+            return newly_formed_array;
+        }
+    }
+
+
+    executeBinarySearch(num_arr, 80);
+</script>
+</html>
